@@ -1,0 +1,26 @@
+{
+	"builders": [
+    {
+      "type": "vagrant",
+      "communicator": "ssh",
+      "source_path": "ubuntu/jammy64",
+      "provider": "virtualbox",
+      "add_force": true,
+      "box_name": "turbotest/ubuntu_2204_LTS"
+    }
+	],
+	"provisioners": [
+    { "type": "shell", "script": "base_dependencies.sh" },
+		{ "type": "shell", "script": "user_account.sh" },
+    { "type": "shell", "script": "elasticsearch.sh" },
+    { "type": "shell", "script": "headless_browsers.sh" },
+    { "type": "shell", "script": "javascript_node.sh" },
+    { "type": "shell", "script": "mariadb.sh" },
+    { "type": "shell", "script": "memcached.sh" },
+    { "type": "shell", "script": "mysql.sh" },
+    { "type": "shell", "script": "postgresql.sh" },
+    { "type": "shell", "script": "rabbitmq.sh" },
+    { "type": "shell", "script": "redis.sh" },
+    { "type": "shell", "script": "ruby.sh" }
+	]
+}

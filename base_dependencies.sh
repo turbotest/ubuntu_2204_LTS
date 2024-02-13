@@ -1,15 +1,17 @@
 export DEBIAN_FRONTEND=noninteractive
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
-sudo apt-get update -y
-sudo apt-get remove needrestart -y
+sudo apt-get update -qy
+sudo apt-get remove needrestart -qy
 
 sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -yq \
   advancecomp \
+  apt-transport-https \
   autoconf \
   bison \
   build-essential \
   ccache \
+  checkinstall \
   clang \
   cmake \
   curl \
@@ -20,6 +22,8 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -yq 
   gifsicle \
   git \
   git-core \
+  gnupg \
+  gpg \
   imagemagick \
   jhead \
   jpegoptim \
@@ -44,6 +48,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -yq 
   libxslt1-dev \
   libyaml-dev \
   llvm \
+  lsb-release \
   optipng \
   pkg-config \
   pngcrush \
@@ -51,4 +56,5 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -yq 
   protobuf-compiler \
   shellcheck \
   shfmt \
-  zlib1g-dev
+  software-properties-common \
+  zlib1g-dev \
