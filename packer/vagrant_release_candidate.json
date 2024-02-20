@@ -1,0 +1,36 @@
+{
+	"builders": [
+    {
+      "type": "vagrant",
+      "communicator": "ssh",
+      "source_path": "{{ user `source_path` }}",
+      "provider": "virtualbox",
+      "add_force": true,
+      "box_name": "{{ user `box_name` }}"
+    }
+	],
+	"provisioners": [
+    { "type": "shell", "script": "./install/base_dependencies.sh" },
+    { "type": "shell", "script": "./install/elasticsearch.sh" },
+    { "type": "shell", "script": "./install/javascript_node.sh" },
+    { "type": "shell", "script": "./install/headless_browsers.sh" },
+    { "type": "shell", "script": "./install/mysql.sh" },
+    { "type": "shell", "script": "./install/mariadb.sh" },
+    { "type": "shell", "script": "./install/memcached.sh" },
+    { "type": "shell", "script": "./install/openssl.sh" },
+    { "type": "shell", "script": "./install/postgresql.sh" },
+    { "type": "shell", "script": "./install/rabbitmq.sh" },
+    { "type": "shell", "script": "./install/redis.sh" },
+    { "type": "shell", "script": "./install/ruby.sh" },
+    { "type": "shell", "script": "./install/user_account.sh" },
+	],
+  "post-processors": [
+   {
+     "type": "vagrant-cloud",
+     "box_tag": "turbotest/ubuntu_2204_LTS_release_candidate",
+     "access_token": "{{ user `cloud_token` }}",
+     "version": "{{ user `version` }}",
+     "architecture": "amd64"
+   }
+ ]
+}

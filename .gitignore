@@ -1,2 +1,6 @@
-tmp
 .vagrant
+chrome
+chromedriver
+firefox
+output-vagrant
+tmp

@@ -10,6 +10,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -yq 
   autoconf \
   bison \
   build-essential \
+  ca-certificates \
   ccache \
   checkinstall \
   clang \
@@ -36,6 +37,7 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -yq 
   libjpeg-progs \
   libksba-dev \
   libksba8 \
+  libmagickwand-dev \
   libncurses5-dev \
   libpq-dev \
   libprotobuf-dev \
@@ -57,4 +59,5 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -yq 
   shellcheck \
   shfmt \
   software-properties-common \
-  zlib1g-dev \
+  xvfb \
+  zlib1g-dev
