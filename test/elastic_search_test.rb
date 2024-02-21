@@ -7,6 +7,6 @@ class ElasticSearchTest < Minitest::Test
     config = JSON.parse %x{ curl --silent localhost:9200 }
     `sudo systemctl disable --now elasticsearch`
 
-    assert_match(/ubuntu-jammy/, config["name"])
+    assert_match(/elasticsearch/, config["cluster_name"])
   end
 end

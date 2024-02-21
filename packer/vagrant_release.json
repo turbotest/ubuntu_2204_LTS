@@ -10,15 +10,15 @@
     }
 	],
 	"provisioners": [
-    { "type": "shell", "script": "./test/operating_system.sh" }
+    { "type": "shell", "script": "./test/all.sh" }
 	],
   "post-processors": [
-   {
-     "type": "vagrant-cloud",
-     "box_tag": "turbotest/ubuntu_2204_LTS",
-     "access_token": "{{ user `cloud_token` }}",
-     "version": "{{ user `version` }}",
-     "architecture": "amd64"
-   }
- ]
+    {
+      "type": "vagrant-cloud",
+      "box_tag": "turbotest/ubuntu_2204_LTS",
+      "access_token": "{{ user `cloud_token` }}",
+      "version": "{{ user `version` }}-{{ timestamp }}",
+      "architecture": "amd64"
+    }
+  ]
 }

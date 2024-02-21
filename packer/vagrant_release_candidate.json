@@ -22,15 +22,15 @@
     { "type": "shell", "script": "./install/rabbitmq.sh" },
     { "type": "shell", "script": "./install/redis.sh" },
     { "type": "shell", "script": "./install/ruby.sh" },
-    { "type": "shell", "script": "./install/user_account.sh" },
+    { "type": "shell", "script": "./install/user_account.sh" }
 	],
   "post-processors": [
-   {
-     "type": "vagrant-cloud",
-     "box_tag": "turbotest/ubuntu_2204_LTS_release_candidate",
-     "access_token": "{{ user `cloud_token` }}",
-     "version": "{{ user `version` }}",
-     "architecture": "amd64"
-   }
- ]
+    {
+      "type": "vagrant-cloud",
+      "box_tag": "turbotest/ubuntu_2204_LTS_release_candidate",
+      "access_token": "{{ user `cloud_token` }}",
+      "version": "{{ user `version` }}-{{ timestamp }}",
+      "architecture": "amd64"
+    }
+  ]
 }
