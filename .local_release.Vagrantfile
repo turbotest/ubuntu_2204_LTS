@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-  config.vm.box = "local/ubuntu_2204_LTS_release_candidate"
+  config.vm.box = "local/ubuntu_2204_LTS"
   config.ssh.insert_key = false
 
   config.vm.provider "virtualbox" do |virtualbox|
@@ -8,5 +8,5 @@ Vagrant.configure("2") do |config|
     virtualbox.name   = "turbotest"
   end
 
-  # config.vm.provision "shell", privileged: false, path: "./test/operating_system.sh"
+  config.vm.provision "shell", privileged: false, path: "./test/all.sh"
 end

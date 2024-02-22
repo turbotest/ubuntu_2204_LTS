@@ -3,7 +3,7 @@ require "rake/testtask"
 
 namespace :gce do
   namespace :development do
-    desc "Create development release candidate GCE image"
+    desc "Create development release candidate gce image"
     task :release_candidate do
       create_gce_image \
         credentials_file:    "tmp/turbotest-development-8a543b023b25.json",
@@ -11,11 +11,11 @@ namespace :gce do
         log:                 "gce_development_release_candidate",
         project_id:          "turbotest-development",
         source_image_family: "ubuntu-2204-lts",
-        template:            "GCE_release_candidate",
+        template:            "gce_release_candidate",
         zone:                "europe-west2-a"
     end
 
-    desc "Create development production release GCE image"
+    desc "Create development production release gce image"
     task :release do
       create_gce_image \
         credentials_file:    "tmp/turbotest-development-8a543b023b25.json",
@@ -23,33 +23,33 @@ namespace :gce do
         log:                 "gce_development_release",
         project_id:          "turbotest-development",
         source_image_family: "turbotest-ubuntu-2204-lts-release-candidate",
-        template:            "GCE_release",
+        template:            "gce_release",
         zone:                "europe-west2-a"
     end
   end
 
   namespace :production do
-    desc "Create production release candidate GCE image"
+    desc "Create development release candidate gce image"
     task :release_candidate do
       create_gce_image \
         credentials_file:    "tmp/turbotest-production-e760714f3f2c.json",
-        image_family:        "ubuntu-2204-lts-release-candidate",
-        log:                 "gce_production_release_candidate",
+        image_family:        "turbotest-ubuntu-2204-lts-release-candidate",
+        log:                 "gce_development_release_candidate",
         project_id:          "turbotest-production",
         source_image_family: "ubuntu-2204-lts",
-        template:            "GCE_release_candidate",
+        template:            "gce_release_candidate",
         zone:                "europe-west2-b"
     end
 
-    desc "Create production release GCE image"
+    desc "Create development production release gce image"
     task :release do
       create_gce_image \
         credentials_file:    "tmp/turbotest-production-e760714f3f2c.json",
-        image_family:        "ubuntu-2204-lts",
-        log:                 "gce_production_release",
+        image_family:        "turbotest-ubuntu-2204-lts",
+        log:                 "gce_development_release",
         project_id:          "turbotest-production",
-        source_image_family: "ubuntu-2204-lts-release-candidate",
-        template:            "GCE_release",
+        source_image_family: "turbotest-ubuntu-2204-lts-release-candidate",
+        template:            "gce_release",
         zone:                "europe-west2-b"
     end
   end
