@@ -10,15 +10,21 @@
     }
 	],
 	"provisioners": [
-    { "type": "shell", "script": "./test/operating_system.sh" }
+    { "type": "shell", "inline": "sudo mkdir -p /vagrant ; sudo chown -R vagrant:vagrant /vagrant" },
+    { "type": "file", "source": "Gemfile", "destination": "/vagrant/" },
+    { "type": "file", "source": "Gemfile.lock", "destination": "/vagrant/" },
+    { "type": "file", "source": "Rakefile", "destination": "/vagrant/" },
+    { "type": "file", "source": "./test", "destination": "/vagrant/" },
+    { "type": "shell", "script": "./test/all.sh" },
+    { "type": "shell", "inline": "sudo rm -Rf /vagrant" }
 	],
   "post-processors": [
-   {
-     "type": "vagrant-cloud",
-     "box_tag": "turbotest/ubuntu_2204_LTS",
-     "access_token": "{{ user `cloud_token` }}",
-     "version": "{{ user `version` }}",
-     "architecture": "amd64"
-   }
- ]
+    {
+      "type": "vagrant-cloud",
+      "box_tag": "turbotest/ubuntu_2204_LTS",
+      "access_token": "{{ user `cloud_token` }}",
+      "version": "{{ user `version` }}-{{ timestamp }}",
+      "architecture": "amd64"
+    }
+  ]
 }

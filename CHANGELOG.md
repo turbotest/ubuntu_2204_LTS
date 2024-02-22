@@ -16,7 +16,7 @@ https://github.com/turbotest/ubuntu_2204_LTS/compare/v0.1...HEAD
 ### Removed
 ### Security
 
-## [0.2] - 2024-02-19
+## [0.2] - 2024-02-22
 ### Added
 * Build system using ruby rake
 * Two phase build process: 1) release candidate 2) production release
