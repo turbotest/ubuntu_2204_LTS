@@ -1,7 +1,12 @@
 # Puppeteer browser version manager:
 # https://developer.chrome.com/blog/chrome-for-testing
+# https://googlechromelabs.github.io/chrome-for-testing/
+
+# Automatically download latest chrome and chromedriver version:
+# https://github.com/GoogleChromeLabs/chrome-for-testing?tab=readme-ov-file#json-api-endpoints
 
 sudo apt-get install \
+  jq \
   libegl1 \
   libgtk-3-0 \
   libgtk-3-0 \
@@ -13,15 +18,22 @@ sudo apt-get install \
 \. ~/.nvm/nvm.sh
 nvm use 21
 
-cd
-npx --yes @puppeteer/browsers install chrome@121.0.6167.85
-npx --yes @puppeteer/browsers install chromedriver@121.0.6167.85
+json_url="https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json"
+chrome_version=$(curl -s "$json_url" | jq -r '.channels.Stable.version')
 
-sudo mv ~/chrome/linux-121.0.6167.85/chrome-linux64 /opt/chrome
-sudo mv ~/chromedriver/linux-121.0.6167.85/chromedriver-linux64 /opt/chromedriver
+if [ -z "$chrome_version" ]; then
+  echo "Failed to extract the Chrome version."
+  exit 1
+fi
+
+cd
+npx --yes @puppeteer/browsers install chrome@"$chrome_version"
+npx --yes @puppeteer/browsers install chromedriver@"$chrome_version"
+
+sudo mv ~/chrome/linux-"$chrome_version"/chrome-linux64 /opt/chrome
+sudo mv ~/chromedriver/linux-"$chrome_version"/chromedriver-linux64 /opt/chromedriver
 rm -Rf ~/chrome ~/chromedriver
 
-# Firefox - NOT working :(
-# npx --yes @puppeteer/browsers install firefox
-# sudo mv ~/firefox/linux-*/firefox /opt/firefox
-# rm -Rf ~/firefox
+npx --yes @puppeteer/browsers install firefox
+sudo mv ~/firefox/linux-*/firefox /opt/firefox
+rm -Rf ~/firefox

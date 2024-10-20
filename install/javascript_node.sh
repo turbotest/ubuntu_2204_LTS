@@ -9,12 +9,15 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 
 install_node() {
   nvm install $1
-  npm install --global npm@10.4.0
+  npm install --global npm@10
   npm install --global yarn
 }
 
 install_node 18
+# install_node 19
 install_node 20
 install_node 21
+install_node 22
+install_node 23
 
-nvm alias default 21
+nvm alias default 22

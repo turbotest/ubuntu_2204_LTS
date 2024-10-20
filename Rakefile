@@ -86,7 +86,8 @@ namespace :vagrant do
       execute <<~COMMAND
         set -ex
         vagrant destroy --force
-        vagrant box remove --all local/ubuntu_2204_LTS_release_candidate
+        vagrant box remove --all local/ubuntu_2204_LTS_release_candidate || true
+        VBoxManage unregistervm --delete "turbotest" || true
         rm -f tmp/turbotest_ubuntu_2204_LTS.box
         time vagrant up
         time vagrant package --base turbotest --output tmp/turbotest_ubuntu_2204_LTS.box

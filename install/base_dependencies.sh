@@ -1,6 +1,8 @@
 export DEBIAN_FRONTEND=noninteractive
 echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections
 
+# In case of apt download source errors, remove list of apt sources
+# sudo apt-get clean -y
 sudo apt-get update -qy
 sudo apt-get remove needrestart -qy
 

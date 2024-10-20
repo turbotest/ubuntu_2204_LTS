@@ -1,22 +1,19 @@
 require "helper"
 
 class JavascriptNodeTest < Minitest::Test
-  def test_node_18_installed
-    assert_equal "v18.19.1",  nvm_exec(18, "node -v")
-    assert_match( /10.4.\d+/, nvm_exec(18, "npm -v") )
-    assert_match( /1.22.\d/,  nvm_exec(18, "yarn -v") )
+  def test_node_installed
+    assert_node_installed 18
+    # assert_node_installed 19
+    assert_node_installed 20
+    assert_node_installed 21
+    assert_node_installed 22
+    assert_node_installed 23
   end
 
-  def test_node_20_installed
-    assert_equal "v20.11.1",  nvm_exec(20, "node -v")
-    assert_match( /10.4.\d+/, nvm_exec(20, "npm -v") )
-    assert_match( /1.22.\d/,  nvm_exec(20, "yarn -v") )
-  end
-
-  def test_node_21_installed
-    assert_equal "v21.6.2",  nvm_exec(21, "node -v")
-    assert_match( /10.4.\d+/, nvm_exec(21, "npm -v") )
-    assert_match( /1.22.\d/,  nvm_exec(21, "yarn -v") )
+  def assert_node_installed(version)
+    assert_match( /v#{ version }.*/, nvm_exec(version, "node -v") )
+    assert_match( /10.*/,            nvm_exec(version, "npm -v") )
+    assert_match( /1.22.*/,          nvm_exec(version, "yarn -v") )
   end
 
   private

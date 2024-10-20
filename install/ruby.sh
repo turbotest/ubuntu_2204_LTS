@@ -20,6 +20,11 @@ ruby-install 3.0.6 -- --with-openssl-dir=/opt/openssl-1.1.1w --disable-install-d
 ruby-install 3.1.4
 ruby-install 3.2.3
 ruby-install 3.3.0
+ruby-install 3.3.1
+ruby-install 3.3.2
+ruby-install 3.3.3
+ruby-install 3.3.4
+ruby-install 3.3.5
 
 # Install chruby Ruby version manager
 cd /tmp

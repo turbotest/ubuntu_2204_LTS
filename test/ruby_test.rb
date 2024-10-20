@@ -21,9 +21,11 @@ class RubyTest < Minitest::Test
     assert_match( /3\.1\.0/,      openssl_version( chruby:"3.2.3" ) )
   end
 
-  def test_3_3_0_installed
-    assert_match( /ruby 3\.3\.0/, ruby_version( chruby:"3.3.0" ) )
-    assert_match( /3\.2\.0/,      openssl_version( chruby:"3.3.0" ) )
+  def test_3_3_x_installed(versions=0..5)
+    versions.each do |version|
+      assert_match( /ruby 3\.3\.#{ version }/, ruby_version( chruby:"3.3.#{ version }" ) )
+      assert_match( /3\.2\.0/,      openssl_version( chruby:"3.3.0" ) )
+    end
   end
 
   private
